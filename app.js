@@ -1,11 +1,15 @@
-import express from 'express'
-import cors from 'cors'
-import cookieParser from 'cookie-parser'
+const express = require('express')
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 //import { notFound, errorHandler, processRequest } from './middlewares'
 //import { catchAsync } from './utils'
-import { dbConnect, limiter } from './config'
-import helmet from 'helmet'
+
+// import { dbConnect, limiter } from './config'
+const { dbConnect, limiter } = require('./config')
+
+//import helmet from 'helmet'
+const helmet = require('helmet')
 
 //app config
 const app = express()
@@ -34,12 +38,9 @@ app.use(cookieParser())
 app.use('/api', limiter)
 
 // test route
-app.get(
-  '/',
-
-    res.send('Server is running good... ✨🐱‍🏍🔧🚀⚡🔥')
-
-)
+app.get('/', (req, res) => {
+  res.send('Server is running good... ✨🐱‍🏍🔧🚀⚡🔥')
+})
 
 //static files
 app.use(express.static('public')) // to serve static files
@@ -56,4 +57,4 @@ dbConnect()
 // app.use(processRequest)
 
 //export app
-export default app
+module.exports = app
