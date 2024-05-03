@@ -1,5 +1,4 @@
 const app = require('./app')
-const { dbConnect } = require('./config')
 const { PORT } = require('./envSetup')
 
 const port = PORT || 5000
