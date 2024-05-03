@@ -1,9 +1,9 @@
-import express, { Request, Response, NextFunction } from 'express'
+import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 
-import { notFound, errorHandler, processRequest } from './middlewares'
-import { catchAsync } from './utils'
+//import { notFound, errorHandler, processRequest } from './middlewares'
+//import { catchAsync } from './utils'
 import { dbConnect, limiter } from './config'
 import helmet from 'helmet'
 
@@ -51,9 +51,9 @@ app.use('/favicon.ico', express.static('public/favicon.ico'))
 dbConnect()
 
 //error handling middleware
-app.use(notFound)
-app.use(errorHandler)
-app.use(processRequest)
+// app.use(notFound)
+// app.use(errorHandler)
+// app.use(processRequest)
 
 //export app
 export default app
