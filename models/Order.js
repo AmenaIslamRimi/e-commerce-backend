@@ -16,9 +16,9 @@ const OrderSchema = new Schema(
       required: true,
     },
     shippingMethod: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
     shippingAddress: {
       street: { type: String, required: true, trim: true },
       city: { type: String, required: true, trim: true },
@@ -31,30 +31,30 @@ const OrderSchema = new Schema(
       type: String,
       trim: true,
     },
-    subTotal: { 
-      type: Number, 
+    subTotal: {
+      type: Number,
       required: true,
     },
-    shippingCharge: { 
-        type: Number, 
-        required: true,
+    shippingCharge: {
+      type: Number,
+      required: true,
     },
     // coupon code, if was available
     user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
     },
-    paymentStatus: { 
-        type: String, 
-        required: true,
+    paymentStatus: {
+      type: String,
+      required: true,
     },
-    deliveryStatus: { 
-        type: String, 
-        required: true, 
+    deliveryStatus: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }

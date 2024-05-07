@@ -9,16 +9,16 @@ const ProductSchema = new Schema(
       required: true,
     },
     slug: {
-        type: String,
-      },
+      type: String,
+    },
     productName: {
       type: String,
       required: true,
     },
     purchasePrice: {
-        type: Number,
-        required: true,
-      },
+      type: Number,
+      required: true,
+    },
     regularPrice: {
       type: Number,
       required: true,
@@ -33,13 +33,15 @@ const ProductSchema = new Schema(
           type: String,
           required: true,
         },
-        imgUrl: [{
-          type: String
-        }],
+        imgUrl: [
+          {
+            type: String,
+          },
+        ],
       },
     ],
     size: [{ type: String }],
-   
+
     description: {
       type: String,
     },
