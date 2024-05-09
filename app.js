@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const routerOrder = require("./routes/order");
+const routerProduct = require("./routes/product");
 
 //import { notFound, errorHandler, processRequest } from './middlewares'
 //import { catchAsync } from './utils'
@@ -48,6 +49,7 @@ app.use(express.static("public")); // to serve static files
 
 // routes
 app.use("/api/v1/orders", routerOrder);
+app.use("/api/v1/products", routerProduct);
 
 // add favicon.ico to static files on /public folder /favicon.ico
 app.use("/favicon.ico", express.static("public/favicon.ico"));

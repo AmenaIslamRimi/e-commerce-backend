@@ -5,11 +5,10 @@ const Schema = mongoose.Schema;
 const OrderSchema = new Schema(
   {
     transactionId: { type: String },
-    // count of products
     quantity: {
       type: Number,
-      trim: true,
       required: true,
+      trim: true,
     },
     paymentMethod: {
       type: String,
@@ -25,7 +24,11 @@ const OrderSchema = new Schema(
       state: { type: String, required: true, trim: true },
       country: { type: String, required: true, trim: true },
       zip: { type: String, required: true, trim: true },
-      phoneNumber: { type: String, required: true, trim: true },
+      phoneNumber: {
+        type: String,
+        required: true,
+        trim: true,
+      },
     },
     remark: {
       type: String,
@@ -39,22 +42,27 @@ const OrderSchema = new Schema(
       type: Number,
       required: true,
     },
-    // coupon code, if was available
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
     },
     product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
+      required: true,
     },
     paymentStatus: {
       type: String,
       required: true,
+      enum: ["pending", "paid", "failed"],
+      default: "pending",
     },
     deliveryStatus: {
       type: String,
       required: true,
+      enum: ["pending", "processing", "delivered"],
+      default: "pending",
     },
   },
   { timestamps: true }

@@ -29,8 +29,22 @@ const getSingleOrder = async (req, res) => {
   }
 };
 
+//create order
+const createOrder = async (req, res) => {
+  try {
+    const order = await Order.create(req.body);
+    res.status(201).json({
+      status: "success",
+      data: order,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+
 // export all functions
 module.exports = {
   getAllOrder,
   getSingleOrder,
+  createOrder,
 };
