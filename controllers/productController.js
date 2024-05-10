@@ -1,4 +1,7 @@
-const Order = require("../models/Product");
+const Product = require("../models/Product");
+
+const slugify = require("slugify");
+const { generateSKU } = require("../utils");
 
 // get all product
 const getAllProduct = async (req, res) => {
@@ -12,7 +15,7 @@ const getAllProduct = async (req, res) => {
       count,
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -25,20 +28,35 @@ const getSingleProduct = async (req, res) => {
       data: product,
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 
 //create product
 const createProduct = async (req, res) => {
   try {
-    const product = await Product.create(req.body);
+    // generate sku
+    const sku = generateSKU(6);
+    // generate slug
+    const slug = slugify(req.body.productName, {
+      lower: true,
+      strict: true,
+      replacement: "-",
+    });
+
+    const product = await Product.create({ ...req.body, sku, slug });
+    if (!product) {
+      return res.status(400).json({
+        status: "fail",
+        message: "Invalid data",
+      });
+    }
     res.status(201).json({
       status: "success",
       data: product,
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 

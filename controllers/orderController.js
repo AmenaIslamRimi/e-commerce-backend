@@ -12,7 +12,7 @@ const getAllOrder = async (req, res) => {
       count,
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -25,7 +25,7 @@ const getSingleOrder = async (req, res) => {
       data: order,
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -38,7 +38,7 @@ const createOrder = async (req, res) => {
       data: order,
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 

@@ -30,8 +30,9 @@ const UserSchema = new Schema(
       type: String,
     },
     token: {
-        type: String,
-      },
+      type: String,
+      select: false,
+    },
     role: {
       type: String,
       enum: ["user", "admin"],
