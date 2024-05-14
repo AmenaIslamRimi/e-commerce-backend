@@ -42,9 +42,40 @@ const createOrder = async (req, res) => {
   }
 };
 
+// update order by id
+const updateOrder = async (req, res) => {
+  try {
+    const order = await Order.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({
+      status: "success",
+      data: order,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// delete order by id
+const deleteOrder = async (req, res) => {
+  try {
+    const order = await Order.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      status: "success",
+      data: order,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // export all functions
 module.exports = {
   getAllOrder,
   getSingleOrder,
   createOrder,
+  updateOrder,
+  deleteOrder,
 };

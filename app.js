@@ -4,6 +4,9 @@ const cookieParser = require("cookie-parser");
 const routerOrder = require("./routes/order");
 const routerProduct = require("./routes/product");
 const routerCredential = require("./routes/credential");
+const routerUser = require("./routes/user");
+const routerCatagory = require("./routes/catagory");
+const routerSubCatagory = require("./routes/subCatagory");
 
 //import { notFound, errorHandler, processRequest } from './middlewares'
 //import { catchAsync } from './utils'
@@ -49,9 +52,12 @@ app.get("/", (req, res) => {
 app.use(express.static("public")); // to serve static files
 
 // routes
+app.use("/api/v1", routerCredential);
 app.use("/api/v1/orders", routerOrder);
 app.use("/api/v1/products", routerProduct);
-app.use("/api/v1", routerCredential);
+app.use("/api/v1/users", routerUser);
+app.use("/api/v1/catagories", routerCatagory);
+app.use("/api/v1/subCatagories", routerSubCatagory);
 
 // add favicon.ico to static files on /public folder /favicon.ico
 app.use("/favicon.ico", express.static("public/favicon.ico"));

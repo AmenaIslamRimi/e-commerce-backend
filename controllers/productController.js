@@ -60,9 +60,40 @@ const createProduct = async (req, res) => {
   }
 };
 
+// update product by id
+const updateProduct = async (req, res) => {
+  try {
+    const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({
+      status: "success",
+      data: product,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// delete product by id
+const deleteProduct = async (req, res) => {
+  try {
+    await Product.findByIdAndDelete(req.params.id);
+    res.status(204).json({
+      status: "success",
+      data: null,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // export all functions
 module.exports = {
   getAllProduct,
   getSingleProduct,
   createProduct,
+  updateProduct,
+  deleteProduct,
 };

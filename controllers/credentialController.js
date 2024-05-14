@@ -69,7 +69,33 @@ const login = async (req, res) => {
   }
 };
 
+// forgot password
+const forgotPassword = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    // check if user exist
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        status: "fail",
+        message: "User not found",
+      });
+    }
+    // update password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.password = hashedPassword;
+    await user.save();
+    res.status(200).json({
+      status: "success",
+      message: "Password updated successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   register,
   login,
+  forgotPassword,
 };
