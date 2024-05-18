@@ -6,7 +6,13 @@ const { generateSKU } = require("../utils");
 // get all product
 const getAllProduct = async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().populate({
+      path: "category",
+      select: "title",
+    }).populate({
+      path: "subCategory",
+      select: "title",
+    });
     //   get count of all products
     const count = products.length;
     res.status(200).json({

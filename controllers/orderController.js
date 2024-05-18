@@ -3,7 +3,15 @@ const Order = require("../models/Order");
 // get all order
 const getAllOrder = async (req, res) => {
   try {
-    const orders = await Order.find();
+    const orders = await Order.find()
+      .populate({
+        path: "user",
+        select: "name",
+      })
+      .populate({
+        path: "product",
+        select: "productName",
+      });
     //   get count of all orders
     const count = orders.length;
     res.status(200).json({

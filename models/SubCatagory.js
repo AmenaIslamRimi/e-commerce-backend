@@ -14,7 +14,7 @@ const SubCategorySchema = new Schema(
       type: String,
     },
     category: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
     },
     //SubCategory is draft or not

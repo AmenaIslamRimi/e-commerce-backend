@@ -3,7 +3,10 @@ const SubCatagory = require("../models/SubCatagory");
 // get all subCatagory
 const getAllSubCatagory = async (req, res) => {
   try {
-    const subCatagories = await SubCatagory.find();
+    const subCatagories = await SubCatagory.find().populate({
+      path: "category",
+      select: "title",
+    });
     //   get count of all subCatagories
     const count = subCatagories.length;
     res.status(200).json({
