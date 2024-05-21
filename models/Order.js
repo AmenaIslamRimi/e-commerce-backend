@@ -5,11 +5,6 @@ const Schema = mongoose.Schema;
 const OrderSchema = new Schema(
   {
     transactionId: { type: String },
-    quantity: {
-      type: Number,
-      required: true,
-      trim: true,
-    },
     paymentMethod: {
       type: String,
       required: true,
@@ -30,10 +25,6 @@ const OrderSchema = new Schema(
         trim: true,
       },
     },
-    remark: {
-      type: String,
-      trim: true,
-    },
     subTotal: {
       type: Number,
       required: true,
@@ -46,10 +37,20 @@ const OrderSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    product: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
-    },
+    products: [
+      {
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Product',
+          required: [true, 'Please add a product'],
+        },
+        quantity: {
+          type: Number,
+          required: [true, 'Please add a quantity'],
+          default: 0,
+        },
+      },
+    ],
     paymentStatus: {
       type: String,
       required: true,

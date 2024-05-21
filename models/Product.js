@@ -33,6 +33,10 @@ const ProductSchema = new Schema(
           type: String,
           required: true,
         },
+        stock: {
+          type: Number,
+          required: true,
+        },
         imgUrl: [
           {
             type: String,
@@ -53,10 +57,7 @@ const ProductSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "SubCategory",
     },
-    stock: {
-      type: Number,
-      required: true,
-    },
+  
     status: {
       type: String,
       enum: ["draft", "published"],

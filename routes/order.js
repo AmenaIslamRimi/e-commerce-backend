@@ -7,8 +7,8 @@ const orderController = require("../controllers/orderController");
 
 // verify admin and auth middleware
 
-router.use(auth);
-router.use(checkAdmin);
+// router.use(auth);
+// router.use(checkAdmin);
 
 router.get("/", orderController.getAllOrder);
 router.get("/:id", orderController.getSingleOrder);
